@@ -1,0 +1,119 @@
+{
+  "templatesMetadata": [
+    {
+      "configuration": "lensflare-unleash-the-power-of-nature.json",
+      "id": "01E18PGE1RYB3R9YF9HRXQ0ZSD",
+      "isNew": false,
+      "isPremium": true,
+      "templateCategories": [
+        "01DJ4TM160ETZR0NT4HA2M0ZTK",
+        "01DJ4TM161MRR86QFAXJTWP7NM"
+      ],
+      "templateName": "lens-flare-template.json",
+      "templateThumbnailURI": "UnleashThePowerOfNatureThumbnail.jpg"
+    },
+    {
+      "configuration": "accountingtravis.json",
+      "id": "01DX1RB94P35Q1A2W6AA5XCQZ9",
+      "isNew": false,
+      "isPremium": true,
+      "templateCategories": [
+        "01DJ4TM160ETZR0NT4HA2M0ZTK",
+        "01DJ4TM161P490A1DZ3AFKXNNF"
+      ],
+      "templateName": "lightleaks-template.json",
+      "templateThumbnailURI": "AccountingTravisThumbnail.jpg"
+    },
+    {
+      "configuration": "yeti.json",
+      "id": "01EAEFVPZ6MFJEMCA8XB06HB01",
+      "isNew": true,
+      "isPremium": true,
+      "templateCategories": [
+        "01DJ4TM160ETZR0NT4HA2M0ZTK",
+        "01DJ4TM161P490A1DZ3AFKXNNF"
+      ],
+      "templateName": "fashion-template.json",
+      "templateThumbnailURI": "yeti-thumbnail.jpg"
+    },
+    {
+      "configuration": "BusinessDev.json",
+      "id": "01DX1RB965Z96AD283559NJT9T",
+      "isNew": false,
+      "isPremium": true,
+      "templateCategories": [
+        "01DJ4TM161P490A1DZ3AFKXNNF",
+        "01DJ4TM160ETZR0NT4HA2M0ZTK"
+      ],
+      "templateName": "holistic-template.json",
+      "templateThumbnailURI": "BusinessDevDefaultThumbnail.jpg"
+    },
+    {
+      "configuration": "start-living.json",
+      "id": "01EAEFVXVT6VS2R24GR7Q40XE0",
+      "isNew": true,
+      "isPremium": true,
+      "templateCategories": [
+        "01DJ4TM160ETZR0NT4HA2M0ZTK",
+        "01DJ4TM161NNZMQQEXSX6DE4QJ"
+      ],
+      "templateName": "fashion-template.json",
+      "templateThumbnailURI": "start-living-thumbnail.jpg"
+    },
+    {
+      "configuration": "beach4july.json",
+      "id": "01DX1RB94MBAKC6ECYGMKVJT4B",
+      "isNew": false,
+      "isPremium": false,
+      "templateCategories": [
+        "01E2846M7HM3B12V0YTJM0M5KF"
+      ],
+      "templateName": "fashion-template.json",
+      "templateThumbnailURI": "Beach4JulyThumbnail.jpg"
+    },
+    {
+      "configuration": "sliderevealboundingbox-happy-independence-day.json",
+      "id": "01EC34AY3EQTA5294ZRHC6FQMJ",
+      "isNew": true,
+      "isPremium": true,
+      "templateCategories": [
+        "01E2846M7HM3B12V0YTJM0M5KF"
+      ],
+      "templateName": "slide-reveal-boundingbox-template.json",
+      "templateThumbnailURI": "sliderevealboundingbox-happy-independence-day-thumbnail.jpg"
+    },
+    {
+      "configuration": "recipes4july.json",
+      "id": "01DX1RB923YYSRNFQF90TJNP03",
+      "isNew": false,
+      "isPremium": true,
+      "templateCategories": [
+        "01E2846M7HM3B12V0YTJM0M5KF"
+      ],
+      "templateName": "fashion-template.json",
+      "templateThumbnailURI": "Recipes4JulyThumbnail.jpg"
+    },
+    {
+      "configuration": "independence-day-celebration.json",
+      "id": "01EBX3ZC3HZEXJYKEQ8SZAMGDY",
+      "isNew": true,
+      "isPremium": true,
+      "templateCategories": [
+        "01E2846M7HM3B12V0YTJM0M5KF"
+      ],
+      "templateName": "classic.json",
+      "templateThumbnailURI": "independence-day-celebration-thumbnail.jpg"
+    },
+    {
+      "configuration": "happy-valentine's-day.json",
+      "id": "01E7674TVS66G1AGGMDE3YJVD7",
+      "isNew": false,
+      "isPremium": true,
+      "templateCategories": [
+        "01E2846M7HM3B12V0YTJM0M5KF"
+      ],
+      "templateName": "classic.json",
+      "templateThumbnailURI": "happy-valentine's-day-thumbnail.jpg"
+    }
+  ]
+}

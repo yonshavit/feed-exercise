@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Feed Exercise</string>
+    <string name="feed_empty_text">No data available</string>
+    <string name="network_error">Could not load data from the internet</string>
+</resources>
