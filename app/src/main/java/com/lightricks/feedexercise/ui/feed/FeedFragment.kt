@@ -38,6 +38,7 @@ class FeedFragment : Fragment() {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this, FeedViewModelFactory())
             .get(FeedViewModel::class.java)
+        viewModel.initRepo(activity!!.applicationContext)
 
         viewModel.getFeedItems().observe(viewLifecycleOwner, Observer { items ->
             feedAdapter.items = items
