@@ -19,6 +19,7 @@ open class FeedViewModel : ViewModel() {
     private lateinit var feedRepository: FeedRepository
     private val feedItems = MediatorLiveData<List<FeedItem>>()
     private val networkErrorEvent = MutableLiveData<Event<String>>()
+    private val NETWORK_ERROR_MESSAGE = "Couldn't load items, unexpected network error."
 
     fun getIsLoading(): LiveData<Boolean> = isLoading
     fun getIsEmpty(): LiveData<Boolean> = isEmpty
@@ -37,13 +38,13 @@ open class FeedViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun refresh() {
         isLoading.value = true
-        feedRepository.refresh().subscribeOn(Schedulers.io())
+        feedRepository.refresh()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 isLoading.value = false
             }, { error ->
                 isLoading.value = false
-                networkErrorEvent.value = Event(error!!.toString())
+                networkErrorEvent.value = Event(error?.toString() ?: NETWORK_ERROR_MESSAGE)
             })
     }
 }
