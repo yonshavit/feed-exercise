@@ -31,7 +31,7 @@ class Factory {
             return retrofit.create(FeedApiService::class.java)
         }
 
-        fun createFeedRepository(db : FeedDatabase, service: FeedApiService): FeedRepository{
+        fun createFeedRepository(db: FeedDatabase, service: FeedApiService): FeedRepository{
             return FeedRepository(db,service)
         }
     }

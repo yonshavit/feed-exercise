@@ -27,9 +27,9 @@ open class FeedViewModel : ViewModel() {
 
     fun initRepo(feedRepository: FeedRepository) {
         this.feedRepository = feedRepository
-        feedItems.addSource(feedRepository.getFeedItems(), Observer { t ->
-            isEmpty.value = t.isEmpty()
-            feedItems.value = t
+        feedItems.addSource(feedRepository.getFeedItems(), Observer { feedItems ->
+            isEmpty.value = feedItems.isEmpty()
+            this.feedItems.value = feedItems
         })
         refresh()
     }
@@ -42,7 +42,8 @@ open class FeedViewModel : ViewModel() {
             .subscribe({
                 isLoading.value = false
             }, { error ->
-                networkErrorEvent.value = Event(error.toString())
+                isLoading.value = false
+                networkErrorEvent.value = Event(error!!.toString())
             })
     }
 }

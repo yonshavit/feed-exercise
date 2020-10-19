@@ -8,14 +8,13 @@ import com.lightricks.feedexercise.database.FeedItemEntity
 import com.lightricks.feedexercise.network.FeedApiService
 import com.lightricks.feedexercise.network.FeedResponse
 import io.reactivex.Completable
-import io.reactivex.Scheduler
 
 /**
  * This is our data layer abstraction. Users of this class don't need to know
  * where the data actually comes from (network, database or somewhere else).
  */
-class FeedRepository(private val db:FeedDatabase, private val service: FeedApiService) {
-    private val URL_PREQUEL:String = "https://assets.swishvideoapp.com/Android/demo/catalog/thumbnails/"
+class FeedRepository(private val db: FeedDatabase, private val service: FeedApiService) {
+    private val URL_PREFIX = "https://assets.swishvideoapp.com/Android/demo/catalog/thumbnails/"
     private val feedDao: FeedDao = db.feedDao()
     private val liveData: LiveData<List<FeedItem>> = Transformations.map(feedDao.getAllLiveData()) {
         it.toFeedItems()
@@ -34,11 +33,11 @@ class FeedRepository(private val db:FeedDatabase, private val service: FeedApiSe
             insertResponseToDatabase(feedResponse) }
     }
 
-    private fun insertResponseToDatabase(feedResponse: FeedResponse):Completable{
+    private fun insertResponseToDatabase(feedResponse: FeedResponse): Completable {
         val feedItemsEntityList = feedResponse.templatesMetadata.map { it ->
             FeedItemEntity(
                 it.id,
-                 URL_PREQUEL + it.templateThumbnailURI,
+                 URL_PREFIX + it.templateThumbnailURI,
                 it.isPremium
             )
         }

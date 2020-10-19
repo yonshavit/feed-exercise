@@ -1,7 +1,6 @@
 package com.lightricks.feedexercise.data
 
 import android.content.Context
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -12,9 +11,6 @@ import com.lightricks.feedexercise.database.FeedDao
 import com.lightricks.feedexercise.database.FeedDatabase
 import com.lightricks.feedexercise.database.FeedItemEntity
 import com.lightricks.feedexercise.network.MockFeedApiService
-import com.lightricks.feedexercise.util.Event
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,6 +22,7 @@ class SimpleEntityReadWriteTest2 {
     private lateinit var feedDao: FeedDao
     private lateinit var db: FeedDatabase
     private lateinit var service: MockFeedApiService
+    private val JSON_ITEMCOUNT = 10
 
     @get:Rule
     val executorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
@@ -38,8 +35,9 @@ class SimpleEntityReadWriteTest2 {
         ).build()
         feedDao = db.feedDao()
     }
+
     @Before
-    fun createService(){
+    fun createService() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         service = MockFeedApiService(context)
     }
@@ -50,51 +48,31 @@ class SimpleEntityReadWriteTest2 {
     }
 
     @Test
-    fun refreshSavesDataAndFeedItemsContainsData(){
-        val feedRepo: FeedRepository = FeedRepository(db,service)
+    fun refreshSavesData() {
+        val feedRepo: FeedRepository = FeedRepository(db, service)
 
         feedRepo.refresh().blockingAwait()
-        val count = feedDao.getCount()
 
-        val feedItems = feedRepo.getFeedItems().blockingObserve()
+        val count = JSON_ITEMCOUNT
         val feedItemsFromDb = feedDao.getAllLiveData().blockingObserve()
 
         assertThat(count).isEqualTo(feedItemsFromDb!!.size)
-        assertThat(count).isEqualTo(feedItems!!.size)
-
     }
 
     @Test
-    fun insertItemAndCheckCount() {
+    fun feedItemsReflectsInsertion() {
+        val feedRepo: FeedRepository = FeedRepository(db, service)
+
         val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
+        val count = 1
         feedDao.insertAll(listOf(feedItem)).blockingAwait()
-        val count = feedDao.getCount()
 
-        assertThat(count).isEqualTo(1)
+        val feedItems = feedRepo.getFeedItems().blockingObserve()
+        assertThat(feedItems!!.size).isEqualTo(count)
     }
-
-    @Test
-    fun insertItemAndDeleteAll() {
-        val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
-        feedDao.insertAll(listOf(feedItem)).blockingAwait()
-        feedDao.deleteAll().blockingAwait()
-        val count = feedDao.getCount()
-        assertThat(count).isEqualTo(0)
-    }
-
-    @Test
-    fun insertItemAndGetAllItems() {
-        val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
-        feedDao.insertAll(listOf(feedItem)).blockingAwait()
-        val getAllResponse = feedDao.getAllLiveData().blockingObserve()
-
-        assertThat(getAllResponse!!).isEqualTo(listOf(feedItem))
-    }
-
-
 }
 
-private fun <T> LiveData<T>.blockingObserve(): T? {
+fun <T> LiveData<T>.blockingObserve(): T? {
     var value: T? = null
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {
