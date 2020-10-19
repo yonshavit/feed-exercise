@@ -10,5 +10,5 @@ import retrofit2.http.GET
 
 interface FeedApiService {
     @GET("feed.json")
-    fun getFeed(): Single<TemplatesMetadata>;
+    fun getFeed(): Single<FeedResponse>;
 }

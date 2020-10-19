@@ -5,11 +5,11 @@ data class TemplatesMetadataItem(
     val id: String,
     val isNew: Boolean,
     val isPremium: Boolean,
-    val templateCategories :List<String>,
+    val templateCategories: List<String>,
     val templateName: String,
     val templateThumbnailURI: String
 )
 
-data class TemplatesMetadata(
+data class FeedResponse(
     val templatesMetadata: List<TemplatesMetadataItem>
 )

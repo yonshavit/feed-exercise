@@ -67,7 +67,7 @@ class SimpleEntityReadWriteTest2 {
     @Test
     fun insertItemAndCheckCount() {
         val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
-        feedDao.insertAll(feedItem).blockingAwait()
+        feedDao.insertAll(listOf(feedItem)).blockingAwait()
         val count = feedDao.getCount()
 
         assertThat(count).isEqualTo(1)
@@ -76,7 +76,7 @@ class SimpleEntityReadWriteTest2 {
     @Test
     fun insertItemAndDeleteAll() {
         val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
-        feedDao.insertAll(feedItem).blockingAwait()
+        feedDao.insertAll(listOf(feedItem)).blockingAwait()
         feedDao.deleteAll().blockingAwait()
         val count = feedDao.getCount()
         assertThat(count).isEqualTo(0)
@@ -85,7 +85,7 @@ class SimpleEntityReadWriteTest2 {
     @Test
     fun insertItemAndGetAllItems() {
         val feedItem: FeedItemEntity = FeedItemEntity("1", "", true)
-        feedDao.insertAll(feedItem).blockingAwait()
+        feedDao.insertAll(listOf(feedItem)).blockingAwait()
         val getAllResponse = feedDao.getAllLiveData().blockingObserve()
 
         assertThat(getAllResponse!!).isEqualTo(listOf(feedItem))

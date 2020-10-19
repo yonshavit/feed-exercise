@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
 import com.lightricks.feedexercise.R
+import com.lightricks.feedexercise.data.Factory
+import com.lightricks.feedexercise.data.FeedRepository
 import com.lightricks.feedexercise.databinding.FeedFragmentBinding
 
 /**
@@ -38,7 +40,9 @@ class FeedFragment : Fragment() {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this, FeedViewModelFactory())
             .get(FeedViewModel::class.java)
-        viewModel.initRepo(activity!!.applicationContext)
+        val feedRepository = Factory.createFeedRepository(Factory.createDatabase(requireContext()),
+            Factory.createService())
+        viewModel.initRepo(feedRepository)
 
         viewModel.getFeedItems().observe(viewLifecycleOwner, Observer { items ->
             feedAdapter.items = items

@@ -7,19 +7,19 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import io.reactivex.Completable
 
-const val DATABASE_NAME = "FeedItemEntity"
+const val TABLE_NAME = "FeedItemEntity"
 
 @Dao
 interface FeedDao {
-    @Query("SELECT * FROM "+DATABASE_NAME)
+    @Query("SELECT * FROM $TABLE_NAME")
     fun getAllLiveData(): LiveData<List<FeedItemEntity>>
 
-    @Query("SELECT COUNT(id) FROM "+ DATABASE_NAME)
-    fun getCount():Int
+    @Query("SELECT COUNT(id) FROM $TABLE_NAME")
+    fun getCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg itemEntities: FeedItemEntity): Completable
+    fun insertAll(itemEntities: List<FeedItemEntity>): Completable
 
-    @Query("DELETE FROM "+DATABASE_NAME)
+    @Query("DELETE FROM $TABLE_NAME")
     fun deleteAll(): Completable
 }

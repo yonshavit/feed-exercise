@@ -8,13 +8,13 @@ import io.reactivex.Single
 
 
 class MockFeedApiService(val context: Context) : FeedApiService {
-    override fun getFeed(): Single<TemplatesMetadata> {
+    override fun getFeed(): Single<FeedResponse> {
         val kotlinJsonAdapterFactory = KotlinJsonAdapterFactory()
         val moshi = Moshi.Builder()
             .add(kotlinJsonAdapterFactory)
             .build()
-        val jsonAdapter: JsonAdapter<TemplatesMetadata> =
-            moshi.adapter(TemplatesMetadata::class.java)
+        val jsonAdapter: JsonAdapter<FeedResponse> =
+            moshi.adapter(FeedResponse::class.java)
         return Single.just(jsonAdapter.fromJson(context.assets.open("get_feed_response.json").bufferedReader().use { it.readText() }))
     }
 }
